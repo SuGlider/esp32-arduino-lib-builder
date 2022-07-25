@@ -92,12 +92,13 @@ if [ $? -ne 0 ]; then exit 1; fi
 #
 
 if [ ! -d "$AR_COMPS/esp_littlefs" ]; then
-	git clone $LITTLEFS_REPO_URL "$AR_COMPS/esp_littlefs" && \
+    git clone $LITTLEFS_REPO_URL "$AR_COMPS/esp_littlefs" && \
     git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
-else
-	git -C "$AR_COMPS/esp_littlefs" fetch && \
-	git -C "$AR_COMPS/esp_littlefs" pull --ff-only && \
-    git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
+    git -C "$AR_COMPS/esp_littlefs" checkout 6a08044
+#else
+	#git -C "$AR_COMPS/esp_littlefs" fetch && \
+	#git -C "$AR_COMPS/esp_littlefs" pull --ff-only && \
+    #git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 
@@ -108,11 +109,11 @@ if [ $? -ne 0 ]; then exit 1; fi
 if [ ! -d "$AR_COMPS/esp-rainmaker" ]; then
     git clone $RMAKER_REPO_URL "$AR_COMPS/esp-rainmaker" && \
     git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
-    # git -C "$AR_COMPS/esp-rainmaker" checkout f1b82c71c4536ab816d17df016d8afe106bd60e3
-else
-	git -C "$AR_COMPS/esp-rainmaker" fetch && \
-	git -C "$AR_COMPS/esp-rainmaker" pull --ff-only && \
-    git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
+    git -C "$AR_COMPS/esp-rainmaker" checkout 88335d1
+#else
+	#git -C "$AR_COMPS/esp-rainmaker" fetch && \
+	#git -C "$AR_COMPS/esp-rainmaker" pull --ff-only && \
+    #git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 
